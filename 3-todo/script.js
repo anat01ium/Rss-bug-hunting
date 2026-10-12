@@ -29,7 +29,7 @@ function toggleTask(id) {
 }
 
 function deleteTask(id) {
-  tasks.filter((t) => t.id !== id);
+  tasks = tasks.filter((t) => t.id !== id);
   render();
 }
 
@@ -47,9 +47,9 @@ function updateCounter() {
 }
 
 function render() {
+  list.textContent = "";
   if (tasks.length > 0) {
     const visible = getVisibleTasks();
-    list.textContent = "";
     for (let i = 0; i < visible.length; i++) {
       const task = visible[i];
       const li = document.createElement("li");

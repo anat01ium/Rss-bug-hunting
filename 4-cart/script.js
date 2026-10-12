@@ -76,6 +76,7 @@ function clearCart() {
 
 function renderCart() {
   cartItemsEl.innerHTML = "";
+  let qty = 0;
   let total = 0;
   cart.forEach((item) => {
     const lineTotal = item.price * item.qty;
@@ -91,6 +92,7 @@ function renderCart() {
     li.querySelector('[data-act="dec"]').addEventListener("click", () => decreaseQty(item.id));
     li.querySelector(".remove").addEventListener("click", () => removeItem(item.id));
     cartItemsEl.appendChild(li);
+    qty += item.qty;
     total += lineTotal;
   });
 
@@ -98,7 +100,7 @@ function renderCart() {
     total = total - total * discount;
   }
 
-  badgeEl.textContent = cart.length;
+  badgeEl.textContent = qty;
   totalEl.textContent = total;
   emptyMsg.hidden = true;
 }
